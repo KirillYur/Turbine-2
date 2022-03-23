@@ -139,7 +139,6 @@ plot_hs_nozzle_t([6.1, 6.5], [3300, 3600])
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
 
-st.write(f'l_1 = {l_1:.4f} м')
 if alpha_1 <= 10:
     NozzleBlade = 'C-90-09A'
     t1_ = 0.78
@@ -169,8 +168,8 @@ else:
     W1_mod = 0.333
     alpha_inst1 = alpha_1 - 17.7 * (t1_ - 0.75) + 24.2
 
-st.write('Тип профиля:', NozzleBlade)
-st.write(f'Оптимальный относительный шаг t1_ = {t1_}')
+#st.write('Тип профиля:', NozzleBlade)
+#st.write(f'Оптимальный относительный шаг t1_ = {t1_}')
 z1 = (M.pi * d) / (b_1 * t1_)
 z1 = int(z1)
 if z1 % 2 == 0:
@@ -189,8 +188,8 @@ Ksi_1 = Ksi_1_ * k_11 * k_12 * k_13
 
 fi_1 = M.sqrt(1 - Ksi_1 / 100)
 
-st.write(f'mu_1 = {mu_1}')
-st.write(f'fi_1 = {fi_1}')
+#st.write(f'mu_1 = {mu_1}')
+#st.write(f'fi_1 = {fi_1}')
 
 alpha_1 = 12
 c_1 = c_1t * fi_1
@@ -199,9 +198,9 @@ alpha_1 = M.degrees(M.asin(mu_1 / fi_1 * M.sin(M.radians(alpha_1))))
 
 w_1 = (c_1 ** 2 + u ** 2 - 2 * c_1 * u * M.cos(M.radians(alpha_1))) ** 0.5
 
-st.write(f'c_1 = {c_1:.2f} м/с')
-st.write(f'alpha_1 = {alpha_1:.2f} град.')
-st.write(f'w_1 = {w_1}')
+#st.write(f'c_1 = {c_1:.2f} м/с')
+#st.write(f'alpha_1 = {alpha_1:.2f} град.')
+#st.write(f'w_1 = {w_1}')
 c_1u = c_1 * M.cos(M.radians(alpha_1))
 c_1a = c_1 * M.sin(M.radians(alpha_1))
 w_1u = c_1u - u
@@ -240,15 +239,15 @@ F_2 = G_0 * point_2t.v / mu_2 / w_2t
 betta_2 = M.degrees(M.asin(F_2 / (e_opt * M.pi * d * l_2)))
 
 point_1w = WSP(h=point_1.h + w_1 ** 2 / 2 * 1e-3, s=point_1.s)
-st.write(f'betta_1 = {betta_1:.2f}')
-st.write(f'Delta_Hs = {Delta_Hs:.2f} Дж/кг')
-st.write(f'h_1 = {h_1:.2f} кДж/кг')
-st.write(f'h_2t = {h_2t:.2f} кДж/кг')
-st.write(f'w_2t = {w_2t:.2f} м/с')
-st.write(f'mu_2 = {mu_2:.2f}')
-st.write(f'M_2t = {M_2t:.2f}')
-st.write(f'F_2 = {F_2:.2f}')
-st.write(f'betta_2 = {betta_2:.2f}')
+#st.write(f'betta_1 = {betta_1:.2f}')
+#st.write(f'Delta_Hs = {Delta_Hs:.2f} Дж/кг')
+#st.write(f'h_1 = {h_1:.2f} кДж/кг')
+#st.write(f'h_2t = {h_2t:.2f} кДж/кг')
+#st.write(f'w_2t = {w_2t:.2f} м/с')
+#st.write(f'mu_2 = {mu_2:.2f}')
+#st.write(f'M_2t = {M_2t:.2f}')
+#st.write(f'F_2 = {F_2:.2f}')
+#st.write(f'betta_2 = {betta_2:.2f}')
 fig3 = plt.figure()
 def plot_hs_stage_t(x_lim, y_lim):
     plot_hs_nozzle_t(x_lim, y_lim)
@@ -355,21 +354,21 @@ w_1u = c_1u - u
 w_2a = w_2 * M.sin(M.radians(betta_2))
 w_2u = w_2 * M.cos(M.radians(betta_2))
 c_2u = w_2u + u
-print(c_1u, w_1u)
+
 w_1_tr = [0, 0, -w_1u, -c_1a]
 c_1_tr = [0, 0, -c_1u, -c_1a]
 u_1_tr = [-w_1u, -c_1a, -u, 0]
-st.write('Тип профиля:', RotorBlade)
-st.write(f'Оптимальный относительный шаг t2_ = {t2_}')
-st.write(f'z2 = {z2}')
-st.write(f'psi = {psi:.2f}')
-st.write(f'w_2 = {w_2:.2f} м/с')
-st.write(f'c_2 = {c_2:.2f} м/с')
-st.write(f'alpha_2 = {alpha_2:.2f}')
-st.write(f'Delta_Hr = {Delta_Hr:.2f} Дж/кг')
-st.write(f'Delta_Hvs = {Delta_Hvs:.2f} Дж/кг')
-st.write(f'1. etta_ol = {etta_ol1}')
-st.write(f'2. etta_ol = {etta_ol2}')
+#st.write('Тип профиля:', RotorBlade)
+#st.write(f'Оптимальный относительный шаг t2_ = {t2_}')
+#st.write(f'z2 = {z2}')
+#st.write(f'psi = {psi:.2f}')
+#st.write(f'w_2 = {w_2:.2f} м/с')
+#st.write(f'c_2 = {c_2:.2f} м/с')
+#st.write(f'alpha_2 = {alpha_2:.2f}')
+#st.write(f'Delta_Hr = {Delta_Hr:.2f} Дж/кг')
+#st.write(f'Delta_Hvs = {Delta_Hvs:.2f} Дж/кг')
+#st.write(f'1. etta_ol = {etta_ol1}')
+#st.write(f'2. etta_ol = {etta_ol2}')
 w_2_tr = [0, 0, w_2u, -w_2a]
 c_2_tr = [0, 0, c_2u, -w_2a]
 u_2_tr = [c_2u, -w_2a, -u, 0]
@@ -442,8 +441,8 @@ st.write("""Относительные вентиляционные потери
 st.write("""Относительные сегментные потери""", xi_segm)
 st.write("""Использованный теплоперепад ступени  
                     H_i = %.3f кДж/кг""" % H_i)
-st.write("""Внутренний относительный КПД ступени  
+st.subheader("""Внутренний относительный КПД ступени  
                  eta_oi = %.3f """ % eta_oi)
-st.write("""Внутреняя мощность ступени  
+st.subheader("""Внутреняя мощность ступени  
                      N_i = = %.2f кВт""" % N_i)
 
