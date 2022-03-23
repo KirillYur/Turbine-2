@@ -92,6 +92,7 @@ for i in d:
 plt.plot(ucf, eta)
 plt.ylabel('eta')
 plt.xlabel('u_cf')
+plt.title("Зависимость КПД от Ucf")
 st.pyplot(fighs)
 def frange(x, y, jump):
   while x < y:
@@ -105,7 +106,7 @@ df = pd.DataFrame({
 df
 d = 1.1
 u = M.pi * d * n
-with st.expander("See explanation"):
+with st.expander("Параметры турбины"):
     st.write(f'u = {u:.2f} м/с')
     point_0 = WSP(P=p_0, T=T_0)
     st.write(f'h_0 = {point_0.h:.2f} кДж/кг')
@@ -125,10 +126,11 @@ with st.expander("See explanation"):
     el_1 = F_1 / M.pi / d / M.sin(M.radians(alpha_1))
     st.write(f'el_1 = {el_1:.4f} м')
     e_opt = 6 * el_1 ** 0.5
+    st.write(f'l_1 = {l_1:.4f} м')
 if e_opt > 0.85:
     e_opt = 0.85
     l_1 = el_1 / e_opt
-    st.write(f'l_1 = {l_1:.4f} м')
+
 
 def plot_hs_nozzle_t(x_lim, y_lim):
     plt.plot([point_0.s, point_1t.s], [point_0.h, point_1t.h], 'ro-')
@@ -259,7 +261,7 @@ def plot_hs_stage_t(x_lim, y_lim):
     iso_bar(point_1w, -0.005, 0.005, 0.001, 'c')
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
-
+plt.title("H-S Диаграмма")
 plot_hs_stage_t([6.28, 6.35], [3350, 3500])
 
 st.pyplot(fig3)
@@ -385,6 +387,7 @@ plt.text(-2 * c_1u / 3, -3 * c_1a / 4, '$c_1$', fontsize=20)
 plt.text(-2 * w_1u / 3, -3 * c_1a / 4, '$w_1$', fontsize=20)
 plt.text(2 * c_2u / 3, -3 * w_2a / 4, '$c_2$', fontsize=20)
 plt.text(2 * w_2u / 3, -3 * w_2a / 4, '$w_2$', fontsize=20)
+plt.title("Треугольник скоростей")
 st.pyplot(fig4)
 delta_a = 0.0025
 z_per_up = 2
