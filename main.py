@@ -129,7 +129,6 @@ if e_opt > 0.85:
 l_1 = el_1 / e_opt
 st.write(f'l_1 = {l_1:.4f} м')
 
-fignozzle = plt.figure()
 def plot_hs_nozzle_t(x_lim, y_lim):
     plt.plot([point_0.s, point_1t.s], [point_0.h, point_1t.h], 'ro-')
     iso_bar(point_0, -0.02, 0.02, 0.001, 'c')
@@ -139,7 +138,6 @@ def plot_hs_nozzle_t(x_lim, y_lim):
 plot_hs_nozzle_t([6.1, 6.5], [3300, 3600])
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
-st.pyplot(fignozzle)
 
 st.write(f'l_1 = {l_1:.4f} м')
 if alpha_1 <= 10:
@@ -212,14 +210,13 @@ st.write(c_1u, w_1u)
 w_1_tr = [0, 0, -w_1u, -c_1a]
 c_1_tr = [0, 0, -c_1u, -c_1a]
 u_1_tr = [-w_1u, -c_1a, -u, 0]
-fig2=plt.figure()
+
 ax = plt.axes()
 ax.arrow(*c_1_tr, head_width=5, length_includes_head=True, head_length=20, fc='r', ec='r')
 ax.arrow(*w_1_tr, head_width=5, length_includes_head=True, head_length=20, fc='b', ec='b')
 ax.arrow(*u_1_tr, head_width=5, length_includes_head=True, head_length=20, fc='g', ec='g')
 plt.text(-2 * c_1u / 3, -3 * c_1a / 4, '$c_1$', fontsize=20)
 plt.text(-2 * w_1u / 3, -3 * c_1a / 4, '$w_1$', fontsize=20)
-st.pyplot(fig2)
 betta_1 = M.degrees(M.atan(M.sin(M.radians(alpha_1)) / (M.cos(M.radians(alpha_1)) - u / c_1)))
 
 Delta_Hs = c_1t ** 2 / 2 * (1 - fi_1 ** 2)
