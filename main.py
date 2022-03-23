@@ -26,6 +26,7 @@ Delta = 0.003  # м
 b_2 = 0.03  # м
 kappa_vs = 0  # коэф исп вых скорости
 st.header("Курсовая работа вторая часть. Юричковский.К.А ТФэ-01-19 Вариант 23")
+st.write("https://github.com/KirillYur/Turbine-2")
 def callculate_optimum(d, p_0, T_0, n, G_0, H_0, rho, l_1, alpha_1, b_1, Delta, b_2, kappa_vs):
     u = M.pi * d * n
     point_0 = WSP(P=p_0, T=T_0)
@@ -104,30 +105,30 @@ df = pd.DataFrame({
 df
 d = 1.1
 u = M.pi * d * n
-
-st.write(f'u = {u:.2f} м/с')
-point_0 = WSP(P=p_0, T=T_0)
-st.write(f'h_0 = {point_0.h:.2f} кДж/кг')
-st.write(f's_0 = {point_0.s:.4f} кДж/(кг*К)')
-H_0s = H_0 * (1 - rho)
-H_0r = H_0 * rho
-h_1t = point_0.h - H_0s
-st.write(f'h_1т = {h_1t:.2f} кДж/кг')
-point_1t = WSP(h=h_1t, s=point_0.s)
-c_1t = (2000 * H_0s) ** 0.5
-st.write(f'c_1т = {c_1t:.2f} м/с')
-M_1t = c_1t / point_1t.w
-st.write(f'M_1т = {M_1t:.2f}')
-mu_1 = 0.982 - 0.005 * (b_1 / l_1)
-F_1 = G_0 * point_1t.v / mu_1 / c_1t
-st.write(f'F_1 = {F_1:.4f} м^2')
-el_1 = F_1 / M.pi / d / M.sin(M.radians(alpha_1))
-st.write(f'el_1 = {el_1:.4f} м')
-e_opt = 6 * el_1 ** 0.5
+with st.expander("See explanation"):
+    st.write(f'u = {u:.2f} м/с')
+    point_0 = WSP(P=p_0, T=T_0)
+    st.write(f'h_0 = {point_0.h:.2f} кДж/кг')
+    st.write(f's_0 = {point_0.s:.4f} кДж/(кг*К)')
+    H_0s = H_0 * (1 - rho)
+    H_0r = H_0 * rho
+    h_1t = point_0.h - H_0s
+    st.write(f'h_1т = {h_1t:.2f} кДж/кг')
+    point_1t = WSP(h=h_1t, s=point_0.s)
+    c_1t = (2000 * H_0s) ** 0.5
+    st.write(f'c_1т = {c_1t:.2f} м/с')
+    M_1t = c_1t / point_1t.w
+    st.write(f'M_1т = {M_1t:.2f}')
+    mu_1 = 0.982 - 0.005 * (b_1 / l_1)
+    F_1 = G_0 * point_1t.v / mu_1 / c_1t
+    st.write(f'F_1 = {F_1:.4f} м^2')
+    el_1 = F_1 / M.pi / d / M.sin(M.radians(alpha_1))
+    st.write(f'el_1 = {el_1:.4f} м')
+    e_opt = 6 * el_1 ** 0.5
 if e_opt > 0.85:
     e_opt = 0.85
-l_1 = el_1 / e_opt
-st.write(f'l_1 = {l_1:.4f} м')
+    l_1 = el_1 / e_opt
+    st.write(f'l_1 = {l_1:.4f} м')
 
 def plot_hs_nozzle_t(x_lim, y_lim):
     plt.plot([point_0.s, point_1t.s], [point_0.h, point_1t.h], 'ro-')
@@ -172,13 +173,13 @@ else:
 #st.write(f'Оптимальный относительный шаг t1_ = {t1_}')
 z1 = (M.pi * d) / (b_1 * t1_)
 z1 = int(z1)
-if z1 % 2 == 0:
+#if z1 % 2 == 0:
 
-    st.write(f'z1 = {z1}')
-else:
-    z1 = z1 + 1
+#    st.write(f'z1 = {z1}')
+#else:
+#    z1 = z1 + 1
 
-    st.write(f'z1 = {z1}')
+#    st.write(f'z1 = {z1}')
 t1_ = (M.pi * d) / (b_1 * z1)
 Ksi_1_ = (0.021042 * b_1 / l_1 + 0.023345) * 100
 k_11 = 7.18977510 * M_1t ** 5 - 26.94497258 * M_1t ** 4 + 39.35681781 * M_1t ** 3 - 26.09044664 * M_1t ** 2 + 6.75424811 * M_1t + 0.69896998
@@ -205,7 +206,7 @@ c_1u = c_1 * M.cos(M.radians(alpha_1))
 c_1a = c_1 * M.sin(M.radians(alpha_1))
 w_1u = c_1u - u
 
-st.write(c_1u, w_1u)
+#st.write(c_1u, w_1u)
 w_1_tr = [0, 0, -w_1u, -c_1a]
 c_1_tr = [0, 0, -c_1u, -c_1a]
 u_1_tr = [-w_1u, -c_1a, -u, 0]
@@ -425,24 +426,24 @@ eta_oi = H_i / E_0
 
 N_i = G_0 * H_i
 
-st.write("""Эквивалентный зазор в уплотнении по бандажу (периферийном) 
-            delta_ekv = %.3f мм""" % (delta_ekv * 1000))
-st.write("""Относительные потери от утечек через бандажные уплотнения 
-                    xi_u_b = %.3f""" % xi_u_b)
-st.write("""Абсолютные потери от утечек через периферийное уплотнение ступени  
-                     Delta_Hub = %.3f кДж/кг""" % Delta_Hub)
-st.write("""Определяем u/c_ф для ступени  
-                     U/c_ф = %.3f""" % ucf)
-st.write("""Относительные потери от трения диска  
-                     xi_tr = %.5f""" % xi_tr)
-st.write("""Абсолютные потери от трения диска  
-                     Delta_Htr = %.3f кДж/кг""" % Delta_Htr)
-st.write("""Относительные вентиляционные потери""", xi_v)
-st.write("""Относительные сегментные потери""", xi_segm)
-st.write("""Использованный теплоперепад ступени  
-                    H_i = %.3f кДж/кг""" % H_i)
+#st.write("""Эквивалентный зазор в уплотнении по бандажу (периферийном)
+#            delta_ekv = %.3f мм""" % (delta_ekv * 1000))
+#st.write("""Относительные потери от утечек через бандажные уплотнения
+#                    xi_u_b = %.3f""" % xi_u_b)
+#st.write("""Абсолютные потери от утечек через периферийное уплотнение ступени
+#                     Delta_Hub = %.3f кДж/кг""" % Delta_Hub)
+#st.write("""Определяем u/c_ф для ступени
+#                     U/c_ф = %.3f""" % ucf)
+#st.write("""Относительные потери от трения диска
+#                     xi_tr = %.5f""" % xi_tr)
+#st.write("""Абсолютные потери от трения диска
+#                     Delta_Htr = %.3f кДж/кг""" % Delta_Htr)
+#st.write("""Относительные вентиляционные потери""", xi_v)
+#st.write("""Относительные сегментные потери""", xi_segm)
+#st.write("""Использованный теплоперепад ступени
+#                    H_i = %.3f кДж/кг""" % H_i)
 st.subheader("""Внутренний относительный КПД ступени  
-                 eta_oi = %.3f """ % eta_oi)
+                 η_oi = %.3f """ % eta_oi)
 st.subheader("""Внутреняя мощность ступени  
                      N_i = = %.2f кВт""" % N_i)
 
