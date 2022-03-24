@@ -250,13 +250,27 @@ point_1w = WSP(h=point_1.h + w_1 ** 2 / 2 * 1e-3, s=point_1.s)
 #st.write(f'mu_2 = {mu_2:.2f}')
 #st.write(f'M_2t = {M_2t:.2f}')
 #st.write(f'F_2 = {F_2:.2f}')
-#st.write(f'betta_2 = {betta_2:.2f}')
+#st.write(f'betta_2 = {betta_2:.2f}
+psi = 0.93
+w_2 = psi * w_2t
+
+c_2 = (w_2 ** 2 + u ** 2 - 2 * u * w_2 * M.cos(M.radians(betta_2))) ** 0.5
+Delta_Hr = w_2t ** 2 / 2 * (1 - psi ** 2)
+h_2 = h_2t + Delta_Hr * 1e-3
+point_2 = WSP(P=point_2t.P, h=h_2)
+Delta_Hvs = c_2 ** 2 / 2
+h_3 = h_2 + Delta_Hvs * 1e-3
+point_3 = WSP(P=point_2t.P, h=h_3)
+
+point_2_ = WSP(P=point_2t.P, h=point_0.h-H_0)
 fig3 = plt.figure()
 def plot_hs_stage_t(x_lim, y_lim):
     plot_hs_nozzle_t(x_lim, y_lim)
     plt.plot([point_0.s, point_1.s], [point_0.h, point_1.h], 'bo-')
     plt.plot([point_1.s, point_2t.s], [point_1.h, point_2t.h], 'ro-')
-    plt.plot([point_1.s, point_1.s], [point_1w.h, point_1.h], 'ro-')
+    plt.plot([point_0.s, point_2_.s], [point_0.h, point_2_.h], 'ro-')
+    plt.plot([point_1.s, point_2.s], [point_1.h, point_2.h], 'bo-')
+    plt.plot([point_2.s, point_3.s], [point_2.h, point_3.h], 'bo-')
     iso_bar(point_2t, -0.02, 0.02, 0.001, 'y')
     iso_bar(point_1w, -0.005, 0.005, 0.001, 'c')
 plt.ylabel('H кДж/кг')
