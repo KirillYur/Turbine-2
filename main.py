@@ -99,6 +99,7 @@ def frange(x, y, jump):
   while x < y:
     yield x
     x += jump
+st.write("Таблица. Зависимость ηол от U/cф")
 df = pd.DataFrame({
     "d, м" : list(frange(0.9, 1.11, 0.01)),
     "eta_ol" : (eta),
