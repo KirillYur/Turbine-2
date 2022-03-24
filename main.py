@@ -93,6 +93,7 @@ plt.plot(ucf, eta)
 plt.ylabel('eta')
 plt.xlabel('u_cf')
 plt.title("Зависимость КПД от Ucf")
+plt.grid(True)
 st.pyplot(fighs)
 def frange(x, y, jump):
   while x < y:
@@ -141,6 +142,7 @@ def plot_hs_nozzle_t(x_lim, y_lim):
 plot_hs_nozzle_t([6.1, 6.5], [3300, 3600])
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
+
 
 if alpha_1 <= 10:
     NozzleBlade = 'C-90-09A'
@@ -223,7 +225,6 @@ betta_1 = M.degrees(M.atan(M.sin(M.radians(alpha_1)) / (M.cos(M.radians(alpha_1)
 
 Delta_Hs = c_1t ** 2 / 2 * (1 - fi_1 ** 2)
 
-
 h_1 = h_1t + Delta_Hs * 1e-3
 
 point_1 = WSP(P=point_1t.P, h=h_1)
@@ -274,9 +275,11 @@ def plot_hs_stage_t(x_lim, y_lim):
     plt.plot([point_1.s, point_1.s], [point_1w.h, point_1.h], 'ro-')
     iso_bar(point_2t, -0.02, 0.02, 0.001, 'y')
     iso_bar(point_1w, -0.005, 0.005, 0.001, 'c')
+
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
 plt.title("H-S Диаграмма")
+plt.grid(True)
 plot_hs_stage_t([6.3, 6.36], [3350, 3500])
 
 st.pyplot(fig3)
@@ -297,7 +300,6 @@ elif 15 < betta_2 <= 19:
     W2_mod = 0.225
     beta_inst2 = betta_2 - 19.3 * (t2_ - 0.6) + 60
 
-
 elif 19 < betta_2 <= 23:
     RotorBlade = 'P-30-21A'
     t2_ = 0.63
@@ -305,7 +307,6 @@ elif 19 < betta_2 <= 23:
     f2_mod = 1.85
     W2_mod = 0.234
     beta_inst2 = betta_2 - 12.8 * (t2_ - 0.65) + 58
-
 
 elif 23 < betta_2 <= 27:
     RotorBlade = 'P-35-25A'
@@ -323,7 +324,6 @@ elif 27 < betta_2 <= 31:
     W2_mod = 0.112
     beta_inst2 = betta_2 - 50.5 * (t2_ - 0.6) + 47.1
 
-
 else:
     RotorBlade = 'P-50-33A'
     t2_ = 0.49
@@ -331,8 +331,6 @@ else:
     f2_mod = 1.02
     W2_mod = 0.079
     beta_inst2 = betta_2 - 20.8 * (t2_ - 0.6) + 43.7
-
-
 
 z2 = int((M.pi * d) / (b_2 * t2_))
 
@@ -403,6 +401,7 @@ plt.text(-2 * w_1u / 3, -3 * c_1a / 4, '$w_1$', fontsize=20)
 plt.text(2 * c_2u / 3, -3 * w_2a / 4, '$c_2$', fontsize=20)
 plt.text(2 * w_2u / 3, -3 * w_2a / 4, '$w_2$', fontsize=20)
 plt.title("Треугольник скоростей")
+
 st.pyplot(fig4)
 delta_a = 0.0025
 z_per_up = 2
