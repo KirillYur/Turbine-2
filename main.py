@@ -268,7 +268,7 @@ def plot_hs_stage_t(x_lim, y_lim):
     plot_hs_nozzle_t(x_lim, y_lim)
     plt.plot([point_0.s, point_1.s], [point_0.h, point_1.h], 'bo-')
     plt.plot([point_1.s, point_2t.s], [point_1.h, point_2t.h], 'ro-')
-    
+
     plt.plot([point_1.s, point_2.s], [point_1.h, point_2.h], 'bo-')
     plt.plot([point_2.s, point_3.s], [point_2.h, point_3.h], 'bo-')
     plt.plot([point_1.s, point_1.s], [point_1w.h, point_1.h], 'ro-')
@@ -277,7 +277,7 @@ def plot_hs_stage_t(x_lim, y_lim):
 plt.ylabel('H кДж/кг')
 plt.xlabel('S кДж/кг*К')
 plt.title("H-S Диаграмма")
-plot_hs_stage_t([6.3, 6.38], [3350, 3500])
+plot_hs_stage_t([6.3, 6.36], [3350, 3500])
 
 st.pyplot(fig3)
 
